@@ -11,6 +11,7 @@ Node.js Express-Ejs-Bootstrap-Mongodb Skeleton
 ******************************************************
 
 ## File Structure
+```
 --- public (static pages)
  |
  +- routes (components)
@@ -20,6 +21,7 @@ Node.js Express-Ejs-Bootstrap-Mongodb Skeleton
  +- views (templates /ejs)
  |
  +- (mapping) /bootstrap -> node_modules/bootstrap/dist)
+```
 
 ## Two samples
  - helloMaxExample is to test static content
