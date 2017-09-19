@@ -31,19 +31,22 @@ MongoClient.connect('mongodb://localhost:27017/hellomax', (err, database) => {
     db = database;
     app.set('db', db);
   }
-  app.listen(3000, () => {
-    console.log('listening on 3000')
+  app.listen(3001, () => {
+    console.log('listening on 3001');
   })
 })
 
 /** Routes **/
-// sample -- simple Get implementation
-var helloMaxExample = require('./routes/helloMaxExample');
-app.use('/examples/helloMax', helloMaxExample);
+// routing table -- cleaner
+app.use(require('./routes'));
 
+// sample -- simple Get implementation
+//var helloMaxExample = require('./routes/helloMaxExample');
+//app.use('/examples/helloMax', helloMaxExample);
+//
 // sample -- mongodb + template
-var membersExample = require('./routes/membersExample')
-app.use('/examples/members', membersExample)
+//var membersExample = require('./routes/membersExample')
+//app.use('/examples/members', membersExample)
 
 /** Start Server **/
 // app.listen(3000, function() {
