@@ -6,6 +6,7 @@ router.post('/', (req, res) => {
   const db = req.app.get('db');
   const request = {
     news: req.body.news,
+    autor: req.body.autor,
     created_at:  new Date().toLocaleString('en-US', {hour12: false})
   };
   db.collection('hackersnews').save(request, (err, result) => {
@@ -16,7 +17,7 @@ router.post('/', (req, res) => {
 
 router.delete('/', (req, res) => {
   const db = req.app.get('db');
-  const requestId = req.body.documentId;
+  const requestId = req.query.documentId;
   const documentId = new mongo.ObjectID(requestId);
   db.collection('hackersnews').remove({_id: documentId}, (err, result) => {
       if (err) return console.log(err);

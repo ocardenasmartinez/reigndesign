@@ -7,9 +7,7 @@ const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bootstrap', express.static('node_modules/bootstrap/dist'));
 app.use(bodyParser.json());
 
 MongoClient.connect('mongodb://localhost:27017/hackersnews', (err, database) => {
