@@ -1,36 +1,29 @@
 {
-  "name": "nodejs-express-ejs-bootstrap-mongo-skeleton",
+  "name": "reigndesign",
   "version": "0.0.1",
-  "description": "Nodejs Skeleton plus Express-Ejs-Bootstrap-Mongodb Edit",
-  "main": "server.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JANQLIANGTSAI/nodejs-express-ejs-bootstrap-mongo-skeleton.git"
+    "start": "nodemon app.js"
   },
   "keywords": [
     "node.js",
     "express",
-    "ejs",
+    "pug",
     "bootstrap",
     "mongodb"
   ],
-  "author": "Max J. Tsai (mt8168@gmail.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JANQLIANGTSAI/nodejs-express-ejs-bootstrap-mongo-skeleton/issues"
-  },
+  "author": "Octavio Cárdenas",
   "homepage": "https://github.com/JANQLIANGTSAI/nodejs-express-ejs-bootstrap-mongo-skeleton#readme",
   "dependencies": {
-    "body-parser": "^1.18.0",
-    "bootstrap": "^3.3.7",
-    "ejs": "^2.5.7",
-    "express": "^4.15.4",
-    "mongodb": "^2.2.31",
-    "multer": "^1.3.0",
-    "nodemon": "^1.12.0"
+    "body-parser": "1.18.0",
+    "bootstrap": "3.3.7",
+    "express": "4.15.4",
+    "mongodb": "2.2.31",
+    "mongodb-wrapper": "1.0.3",
+    "multer": "1.3.0",
+    "nodemon": "1.12.0",
+    "pug": "2.0.3"
   }
 }
