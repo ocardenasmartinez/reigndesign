@@ -7,6 +7,7 @@ router.post('/', (req, res) => {
   const request = {
     news: req.body.news,
     autor: req.body.autor,
+    url: req.body.url,
     created_at:  new Date().toLocaleString('en-US', {hour12: false})
   };
   db.collection('hackersnews').save(request, (err, result) => {
