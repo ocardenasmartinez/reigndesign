@@ -6,13 +6,17 @@ html(lang="en")
     script(src="js/script.js")
     link(rel="stylesheet", href="css/styles.css")
   body
-    .container(class="header", style="margin-top: 10px")
+    .container.header
       | Hackes News
     .container(style="padding-top: 5px")
         each val in news
           .row
-            .col-md-7
-              | #{val.news} - #{val.autor}
+            .col-md-7(style="float:left}")
+              div.box-inline
+                a
+                  | #{val.news}&nbsp;
+              div.box-inline
+                | - #{val.autor}
             .col-md-3.time
               | #{val.created_at}
             .col-md-2.pull-right(style="text-align: center")

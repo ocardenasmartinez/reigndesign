@@ -1,25 +1,21 @@
-const express = require('express');
-const bodyParser= require('body-parser');
-const multer  = require('multer');
-const path = require('path');
-const MongoClient = require('mongodb').MongoClient;
-const app = express();
+var express = require('express');
+var bodyParser = require('body-parser');
+var multer  = require('multer');
+var path = require('path');
+var schedule = require('node-schedule');
+var Algolia = require('./jobs/algolia');
+var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-
-MongoClient.connect('mongodb://localhost:27017/hackersnews', (err, database) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('database connected');
-    app.set('db', database);
-  }
-  app.listen(3001, () => {
-    console.log('listening on 3001');
-  });
+app.listen(3001, () => {
+  console.log('listening on 3001');
 });
-
 app.use(require('./routes'));
+
+var j = schedule.scheduleJob('* * * * * *', function() {
+  var algolia = new Algolia();
+  algolia.executeJob();
+});
