@@ -3,11 +3,18 @@ var mongo = require('mongodb-wrapper')
 var router = express.Router();
 var _ = require('lodash');
 var StoryCrud = require('../../common/storyCrud');
+var mongo = require('mongodb-wrapper');
 
 router.delete('/', (req, res) => {
   const requestId = req.query.documentId;
   const storyCrud = new StoryCrud();
-  storyCrud.delete(requestId).then(response => {
+  const filter = {
+    _id: new mongo.ObjectID(requestId)
+  }
+  const data = {
+    delete: true
+  }
+  storyCrud.update(filter, data).then(response => {
     console.log(response);
   }, err => {
     console.log("err", err);

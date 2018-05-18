@@ -15,7 +15,7 @@ app.listen(3001, () => {
 });
 app.use(require('./routes'));
 
-var j = schedule.scheduleJob('1 * * * * *', function() {
+var j = schedule.scheduleJob('* * * * * *', function() {
   var algolia = new Algolia();
   algolia.executeJob();
 });

@@ -1,5 +1,4 @@
 var dbConnection = require('./connection.js');
-var mongo = require('mongodb-wrapper');
 
 class StoryCrud {
 
@@ -7,7 +6,7 @@ class StoryCrud {
     return new Promise((resolve, reject) => {
       dbConnection(databaseConnection => {
         databaseConnection.collection('stories', (error, collection) => {
-          collection.find().toArray((err, results) => {
+          collection.find({delete: false}).toArray((err, results) => {
             if(err) {
                 console.log("err", err);
                 reject(err);
@@ -36,12 +35,28 @@ class StoryCrud {
   }
 
   delete(id) {
-    console.log("id", id);
-    const documentId = new mongo.ObjectID(id);
+    //const documentId = new mongo.ObjectID(id);
     return new Promise((resolve, reject) => {
       dbConnection(databaseConnection => {
         databaseConnection.collection('stories', (error, collection) => {
           collection.remove({_id: documentId}, (err, results) => {
+            if(err) {
+                console.log("err", err);
+                reject(err);
+            }
+            resolve(results);
+          });
+        });
+      });
+    });
+  }
+
+  update(filter, data) {
+    //const documentId = new mongo.ObjectID(id);
+    return new Promise((resolve, reject) => {
+      dbConnection(databaseConnection => {
+        databaseConnection.collection('stories', (error, collection) => {
+          collection.update(filter, data, (err, results) => {
             if(err) {
                 console.log("err", err);
                 reject(err);

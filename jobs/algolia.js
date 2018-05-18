@@ -28,11 +28,12 @@ class Algolia {
             story_id: el.story_id,
             created_at_i: el.created_at_i,
             author: el.author,
-            title: el.title
+            title: el.title,
+            delete: false
           });
         });
         var currentStories;
-        storyCrud.get().then(stories => {
+        storyCrud.getAll().then(stories => {
           const currentStoriesIds = _.map(stories, x => {
             return x.created_at_i;
           });
@@ -46,7 +47,8 @@ class Algolia {
               story_id: el.story_id,
               created_at_i: el.created_at_i,
               author: el.author,
-              title: el.title
+              title: el.title,
+              delete: false
             });
           });
         }, err => {
