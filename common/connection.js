@@ -3,7 +3,7 @@ var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var connectionInstance;
 
-module.exports = function(callback) {
+module.exports = callback => {
   if (connectionInstance) {
     callback(connectionInstance);
     return;

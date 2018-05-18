@@ -1,5 +1,5 @@
 var https = require('https');
-var StoryDao = require('../common/storyDao');
+var StoryCrud = require('../common/storyCrud');
 var _ = require('lodash')
 
 class Algolia {
@@ -17,7 +17,7 @@ class Algolia {
         data += chunk;
       });
       resp.on('end', () => {
-        const storyDao = new StoryDao()
+        const storyCrud = new StoryCrud()
         var newStories = [];
         JSON.parse(data).hits.forEach((el) => {
           newStories.push({
@@ -29,8 +29,10 @@ class Algolia {
             title: el.title
           });
         });
-        storyDao.get().then(e => {
+        storyCrud.get().then(e => {
           console.log("e", e)
+        }, function(err) {
+          console.log(err);
         });
         /*const currentStoriesIds = _.map(currentStories, (x) => {
           return x.story_id;
