@@ -4,12 +4,17 @@ var router = express.Router();
 var StoryCrud = require('../../common/storyCrud');
 
 router.delete('/', (req, res) => {
-  
+
 });
 
 router.get('/', (req, res) => {
   const storyCrud = new StoryCrud();
-  res.render('stories', {news: storyCrud.get()});
+  storyCrud.get().then(stories => {
+    res.render('stories', {news: stories});
+  }, err => {
+    console.log("err", err);
+  });
+
 });
 
 module.exports = router
