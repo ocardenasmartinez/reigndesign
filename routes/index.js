@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var hackersnewsService = require('./components/controller')
+var nodejsnews = require('./components/controller')
 
-router.use('/hackersnews', hackersnewsService);
+router.use('/nodejsnews', nodejsnews);
 
 module.exports = router

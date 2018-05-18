@@ -3,7 +3,7 @@ function deleteDocument(id) {
   if (result) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = () => {};
-    xhttp.open("DELETE", "hackersnews?documentId=" + id, true);
+    xhttp.open("DELETE", "nodejsnews?created_at_i=" + id, true);
     xhttp.send();
     window.location.reload(1);
   }

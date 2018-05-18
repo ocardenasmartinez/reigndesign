@@ -1,6 +1,6 @@
 var https = require('https');
-var StoryCrud = require('../common/storyCrud');
 var _ = require('lodash');
+var StoryCrud = require('../common/storyCrud');
 
 class Algolia {
   executeJob() {
