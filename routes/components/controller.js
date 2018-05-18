@@ -3,6 +3,7 @@ var mongo = require('mongodb-wrapper')
 var router = express.Router();
 var _ = require('lodash');
 var StoryCrud = require('../../common/storyCrud');
+var moment = require('moment');
 
 router.delete('/', (req, res) => {
   const storyCrud = new StoryCrud();
@@ -32,7 +33,7 @@ router.get('/', (req, res) => {
       storiesOut.push({
         story_title: (el.story_title != null ? el.story_title : el.title),
         story_url: el.story_url,
-        created_at: el.created_at,
+        created_at: setCreatedAt(el.created_at),
         created_at_i: el.created_at_i,
         story_id: el.story_id,
         author: el.author
@@ -45,8 +46,21 @@ router.get('/', (req, res) => {
 
 });
 
-function setCreatedAt(date) {
-
+function setCreatedAt(data) {
+  const format = 'MM/DD/YYYY'
+  const dateIn = moment(data).format(format).toString();
+  const today = moment().format(format).toString();
+  const yesterday = moment(data).subtract(0, 'days').format(format).toString();
+  console.log("today", today);
+  var dateOut
+  if(today == dateIn) {
+    dateOut = moment.utc(data).format("HH:mm");
+  }else if(yesterday == dateIn) {
+    dateOut = "yesterday";
+  } else {
+    dateOut = moment.utc(data).format('MMM. D');
+  }
+  return dateOut;
 }
 
 module.exports = router
