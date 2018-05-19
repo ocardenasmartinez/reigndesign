@@ -27,11 +27,10 @@ var getStories = () => {
           story.delete = el.delete;
           newStories.push(story);
         });
-        logger.log('info', 'stories got count', newStories.length);
         resolve(newStories);
       });
     }).on("error", err => {
-      logger.log('error', 'getting stories error from algolia', err.message);
+      logger.log('error', 'error getting stories from algolia', err.message);
       reject(err);
     });
   });

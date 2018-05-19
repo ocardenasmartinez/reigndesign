@@ -5,7 +5,7 @@ var getByFilter = (filter) => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
       databaseConnection.collection('stories', (error, collection) => {
-        logger.log('info', 'getting stories from database, filter', filter);
+        logger.log('info', 'getting stories from database, filter', JSON.stringify(filter));
         collection.find(filter).toArray((err, results) => {
           if(err) {
               logger.log('error', 'error getting stories from database', err);

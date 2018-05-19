@@ -15,9 +15,9 @@ var remove = id => {
       	created_at_i: created_at_i
     };
     storiesClient.update(filter, data).then(response => {
-      logger.log('info', 'updating story success');
+      logger.log('info', 'success updating story');
     }, err => {
-      logger.log('error', 'updating story error');
+      logger.log('error', 'error updating story');
     });
   });
 }
@@ -41,7 +41,7 @@ var getAll = () => {
       });
       resolve(storiesOut);
     }, err => {
-      logger.log('error', 'getting stories error');
+      logger.log('error', 'error getting stories');
       reject(err);
     });
   });

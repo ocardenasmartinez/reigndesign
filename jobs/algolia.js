@@ -29,10 +29,10 @@ var execute = () => {
         logger.log('info', 'new story saved by job', JSON.stringify(story, 1, 1));
       });
     }, err => {
-      logger.log('error', 'getting stories error');
+      logger.log('error', 'error getting stories');
     });
   }, err => {
-    logger.log('error', 'getting stories error');
+    logger.log('error', 'error getting stories');
   });
 }
 
