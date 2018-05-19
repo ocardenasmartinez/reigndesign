@@ -15,6 +15,6 @@ app.listen(3001, () => {
 });
 app.use(require('./controllers'));
 
-var j = schedule.scheduleJob('* * * * * *', function() {
+var j = schedule.scheduleJob('1 * * * * *', function() {
   algoliaJob.execute();
 });

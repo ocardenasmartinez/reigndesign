@@ -1,7 +1,7 @@
 const Db = require('mongodb').Db;
 const Connection = require('mongodb').Connection;
-
-var Server = require('mongodb').Server;
+const Server = require('mongodb').Server;
+const config = require('../../config/config');
 var connectionInstance;
 
 module.exports = callback => {
@@ -9,7 +9,7 @@ module.exports = callback => {
     callback(connectionInstance);
     return;
   }
-  var db = new Db('stories', new Server("127.0.0.1", 27017, { auto_reconnect: true }));
+  var db = new Db('stories', new Server(config.db.host, config.db.port, { auto_reconnect: true }));
   db.open(function(error, databaseConnection) {
     if (error) throw new Error(error);
     connectionInstance = databaseConnection;

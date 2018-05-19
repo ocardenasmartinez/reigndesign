@@ -1,17 +1,11 @@
 const https = require('https');
 const _ = require('lodash');
 const storiesClient = require('../middlewares/stories-client');
+const config = require('../config/config');
 
 var getStories = () => {
   return new Promise((resolve, reject) => {
-    var clientServerOptions = {
-        uri: '',
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    https.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs', (resp) => {
+    https.get(config.algolia.url, (resp) => {
       let data = '';
       resp.on('data', (chunk) => {
         data += chunk;
