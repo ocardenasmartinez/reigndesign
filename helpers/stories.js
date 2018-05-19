@@ -1,4 +1,4 @@
-const storiesClient = require('../middlewares/stories-client');
+const storiesClient = require('../middlewares/stories');
 const _ = require('lodash');
 const moment = require('moment');
 
@@ -22,7 +22,7 @@ var remove = id => {
 
 var getAll = () => {
   return new Promise((resolve, reject) => {
-    storiesClient.getAll({delete: false}).then(stories => {
+    storiesClient.getByFilter({delete: false}).then(stories => {
       const storiesSorted = _.sortBy(stories, x => {
         return x.created_at_i;
       });

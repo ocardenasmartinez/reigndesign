@@ -1,7 +1,7 @@
 const express = require('express');
 const mongo = require('mongodb-wrapper')
 const router = express.Router();
-const storiesHelper = require('../helpers/stories-helper');
+const storiesHelper = require('../helpers/stories');
 
 router.delete('/', (req, res) => {
   storiesHelper.remove(req.query.created_at_i).then(response => {

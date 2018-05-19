@@ -1,6 +1,6 @@
 const https = require('https');
 const _ = require('lodash');
-const storiesClient = require('../middlewares/stories-client');
+const storiesClient = require('../middlewares/stories');
 const config = require('../config/config');
 
 var getStories = () => {

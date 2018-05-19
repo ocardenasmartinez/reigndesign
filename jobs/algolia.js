@@ -1,12 +1,13 @@
 var https = require('https');
 var _ = require('lodash');
-var storiesClient = require('../middlewares/stories-client');
-var algoliaClient = require('../middlewares/algolia-client');
+var storiesClient = require('../middlewares/stories');
+var algoliaClient = require('../middlewares/algolia');
+var moment = require('moment');
 
 var execute = () => {
-  console.log("executing job");
+  console.log("executing algolia job", moment().format('DD/MM/YYYY HH:mm:ss').toString());
   algoliaClient.getStories().then(newStories => {
-    storiesClient.getAll({}).then(storiesDb => {
+    storiesClient.getByFilter({}).then(storiesDb => {
       const currentStoriesIds = _.map(storiesDb, x => {
         return x.created_at_i;
       });
