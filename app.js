@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var multer  = require('multer');
 var path = require('path');
 var schedule = require('node-schedule');
-var Algolia = require('./jobs/algolia');
+var algoliaJob = require('./jobs/algolia-job');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -13,9 +13,8 @@ app.use(bodyParser.json());
 app.listen(3001, () => {
   console.log('listening on 3001');
 });
-app.use(require('./routes'));
+app.use(require('./controllers'));
 
 var j = schedule.scheduleJob('* * * * * *', function() {
-  var algolia = new Algolia();
-  algolia.executeJob();
+  algoliaJob.execute();
 });
