@@ -1,12 +1,14 @@
 const dbConnection = require('./database/connection.js');
+const logger = require('winston');
 
 var getByFilter = (filter) => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
       databaseConnection.collection('stories', (error, collection) => {
+        logger.log('info', 'getting stories, filter', filter);
         collection.find(filter).toArray((err, results) => {
           if(err) {
-              console.log("err", err);
+              logger.log('error', 'error getting stories', err);
               reject(err);
           }
           resolve(results);
@@ -30,12 +32,13 @@ var save = data  => {
           author: data.author,
           title: data.title,
           delete: data.delete
-        }
+        };
         collection.save(story, (err, results) => {
           if(err) {
-              console.log("err", err);
+              logger.log('error', 'error saving story', err);
               reject(err);
           }
+          logger.log('info', 'story saved', data);
           resolve(results);
         });
       });
@@ -49,9 +52,10 @@ var update = (filter, data) => {
       databaseConnection.collection('stories', (error, collection) => {
         collection.update(filter, data, (err, results) => {
           if(err) {
-              console.log("err", err);
+              logger.log('error', 'error updating story', err);
               reject(err);
           }
+          logger.log('info', 'story updated', filter);
           resolve(results);
         });
       });
