@@ -2,6 +2,7 @@ const https = require('https');
 const _ = require('lodash');
 const storiesClient = require('../middlewares/stories');
 const config = require('../config/config');
+const Story = require('../models/story');
 
 var getStories = () => {
   return new Promise((resolve, reject) => {
@@ -13,17 +14,16 @@ var getStories = () => {
       resp.on('end', () => {
         var newStories = [];
         JSON.parse(data).hits.forEach((el) => {
-          newStories.push({
-            story_id: el.story_id,
-            story_title: el.story_title,
-            story_url: el.story_url,
-            created_at: el.created_at,
-            story_id: el.story_id,
-            created_at_i: el.created_at_i,
-            author: el.author,
-            title: el.title,
-            delete: false
-          });
+          var story = new Story();
+          story.story_id = el.story_id;
+          story.story_title = el.story_title;
+          story.story_url = el.story_url;
+          story.created_at = el.created_at;
+          story.created_at_i = el.created_at_i;
+          story.author = el.author;
+          story.title = el.title;
+          story.delete = el.delete;
+          newStories.push(story);
         });
         resolve(newStories);
       });
