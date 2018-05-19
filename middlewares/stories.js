@@ -20,7 +20,6 @@ var save = data  => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
       databaseConnection.collection('stories', (error, collection) => {
-        console.log("new story: ", JSON.stringify(data, 1, 1));
         collection.save(data, (err, results) => {
           if(err) {
               console.log("err", err);

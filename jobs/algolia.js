@@ -24,6 +24,7 @@ var execute = () => {
           title: el.title,
           delete: false
         });
+        console.log("new story saved: ", JSON.stringify(storiesClient, 1, 1));
       });
     }, err => {
       console.log("storiesClient error", err);

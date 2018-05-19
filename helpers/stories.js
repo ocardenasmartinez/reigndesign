@@ -61,5 +61,7 @@ function setCreatedAt(data) {
   return dateOut;
 }
 
-exports.getAll = getAll;
-exports.remove = remove;
+module.exports = {
+  getAll: getAll,
+  remove: remove
+}
