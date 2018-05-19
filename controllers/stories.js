@@ -6,7 +6,7 @@ const logger = require('winston');
 
 router.delete('/', (req, res) => {
   storiesHelper.remove(req.query.created_at_i).then(response => {
-    res.render('stories', {stories: stories});
+    res.status(200).send('ok');
   }, err => {
     res.status(500).send('error');
   })

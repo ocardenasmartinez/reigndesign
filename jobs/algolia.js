@@ -1,6 +1,7 @@
 const https = require('https');
 const _ = require('lodash');
 const moment = require('moment');
+const logger = require('winston');
 const storiesClient = require('../middlewares/stories');
 const algoliaClient = require('../middlewares/algolia');
 const Story = require('../models/story');
@@ -25,13 +26,13 @@ var execute = () => {
         story.title = el.title;
         story.delete = false;
         storiesClient.save(story);
-        console.log("new story saved: ", JSON.stringify(story, 1, 1));
+        logger.log('info', 'new story saved by job', JSON.stringify(story, 1, 1));
       });
     }, err => {
-      console.log("storiesClient error", err);
+      logger.log('error', 'getting stories error');
     });
   }, err => {
-    console.log("algoliaClient error", err);
+    logger.log('error', 'getting stories error');
   });
 }
 

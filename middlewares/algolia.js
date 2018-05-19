@@ -1,11 +1,13 @@
 const https = require('https');
 const _ = require('lodash');
+const logger = require('winston');
 const storiesClient = require('../middlewares/stories');
 const config = require('../config/config');
 const Story = require('../models/story');
 
 var getStories = () => {
   return new Promise((resolve, reject) => {
+    logger.log('info', 'getting stories from algolia');
     https.get(config.algolia.url, (resp) => {
       let data = '';
       resp.on('data', (chunk) => {
@@ -25,10 +27,11 @@ var getStories = () => {
           story.delete = el.delete;
           newStories.push(story);
         });
+        logger.log('info', 'stories got count', newStories.length);
         resolve(newStories);
       });
     }).on("error", err => {
-      console.log("getStories error: " + err.message);
+      logger.log('error', 'getting stories error from algolia', err.message);
       reject(err);
     });
   });

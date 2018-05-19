@@ -1,6 +1,8 @@
 const storiesClient = require('../middlewares/stories');
 const _ = require('lodash');
 const moment = require('moment');
+const logger = require('winston');
+const format = 'MM/DD/YYYY';
 
 var remove = id => {
   return new Promise((resolve, reject) => {
@@ -13,9 +15,9 @@ var remove = id => {
       	created_at_i: created_at_i
     };
     storiesClient.update(filter, data).then(response => {
-      console.log("update story success", response.result);
+      logger.log('info', 'updating story success');
     }, err => {
-      console.log("update story error", err);
+      logger.log('error', 'updating story error');
     });
   });
 }
@@ -39,14 +41,13 @@ var getAll = () => {
       });
       resolve(storiesOut);
     }, err => {
-      console.log("err", err);
+      logger.log('error', 'getting stories error');
       reject(err);
     });
   });
 }
 
 function setCreatedAt(data) {
-  const format = 'MM/DD/YYYY'
   const dateIn = moment(data).format(format).toString();
   const today = moment().format(format).toString();
   const yesterday = moment(data).subtract(0, 'days').format(format).toString();
