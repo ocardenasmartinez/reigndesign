@@ -1,7 +1,8 @@
-const storiesClient = require('../middlewares/stories');
 const _ = require('lodash');
 const moment = require('moment');
 const logger = require('winston');
+const storiesClient = require('../middlewares/stories');
+const algoliaClient = require('../middlewares/algolia');
 const format = 'MM/DD/YYYY';
 
 var remove = id => {

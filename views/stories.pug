@@ -9,6 +9,7 @@ html(lang="en")
     .container.header
       | Nodejs News
     .container(style="padding-top: 5px")
+      if stories.length != 0
         each val in stories
           .row
             .col-md-7(style="float:left}")
@@ -21,3 +22,8 @@ html(lang="en")
               | #{val.created_at}
             .col-md-2.pull-right(style="text-align: center")
               a(type="button" onclick=`deleteDocument(${JSON.stringify(val.created_at_i)})`, class="delete") delete
+      else
+        script. 
+          setInterval(function(){ location.reload(); }, 3000);
+        | No records wait 3 secons..
+      

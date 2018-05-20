@@ -15,6 +15,6 @@ app.listen(3001, () => {
 });
 app.use(require('./controllers'));
 
-schedule.scheduleJob('1 * * * * *', () => {
+schedule.scheduleJob('10 * * * * *', () => {
   algoliaJob.execute();
 });
