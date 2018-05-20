@@ -8,7 +8,7 @@ const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
 var populate = () => {
   return new Promise((resolve, reject) => {
-    console.log("populating database");
+    logger.log('info', 'populating database');
     algoliaClient.getStories().then(newStories => {
       storiesClient.getByFilter({}).then(storiesDb => {
         const currentStoriesIds = _.map(storiesDb, x => {
