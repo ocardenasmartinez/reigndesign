@@ -3,6 +3,7 @@ const moment = require('moment');
 const logger = require('winston');
 const storiesClient = require('../middlewares/stories');
 const algoliaClient = require('../middlewares/algolia');
+const algoliaHelper = require('../helpers/algolia');
 const format = 'MM/DD/YYYY';
 
 var remove = id => {
@@ -26,10 +27,17 @@ var remove = id => {
 var getAll = () => {
   return new Promise((resolve, reject) => {
     storiesClient.getByFilter({delete: false}).then(stories => {
+      const storiesOut = [];
+      if(_.isEmpty(stories)) {
+        algoliaHelper.populate().then(() => {
+          resolve(storiesOut);
+        }, err => {
+          reject(err);
+        });
+      }
       const storiesSorted = _.sortBy(stories, x => {
         return x.created_at_i;
       });
-      const storiesOut = [];
       storiesSorted.reverse().forEach(el => {
         storiesOut.push({
           story_title: (el.story_title != null ? el.story_title : el.title),

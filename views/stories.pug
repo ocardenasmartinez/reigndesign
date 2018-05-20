@@ -23,7 +23,6 @@ html(lang="en")
             .col-md-2.pull-right(style="text-align: center")
               a(type="button" onclick=`deleteDocument(${JSON.stringify(val.created_at_i)})`, class="delete") delete
       else
+        | No records, wait 3 secons..
         script. 
-          setInterval(function(){ location.reload(); }, 3000);
-        | No records wait 3 secons..
-      
+          setInterval(function(){ location.reload(true); }, 3000);
