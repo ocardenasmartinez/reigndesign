@@ -12,7 +12,7 @@ router.delete('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  //console.log(process.env.NODE_ENV);
+  console.log(process.env.NODE_ENV);
   storiesHelper.getAll().then(stories => {
     res.render('stories', {stories: stories});
   }, err => {

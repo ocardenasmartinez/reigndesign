@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "cross-env NODE_ENV=pro nodemon app.js"
   },
   "keywords": [
     "node.js",

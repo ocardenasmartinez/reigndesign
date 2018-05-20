@@ -14,9 +14,9 @@ Autor: Octavio Cárdenas.
 
 ## Instalation.
 
-git clone git@github.com:ocardenasmartinez/reigndesign.git
-cd reigndesign
-npm install
+* git clone git@github.com:ocardenasmartinez/reigndesign.git
+* cd reigndesign
+* npm install
 
 ## Tests.
 
