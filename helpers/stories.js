@@ -29,11 +29,8 @@ var getAll = () => {
     storiesClient.getByFilter({delete: false}).then(stories => {
       const storiesOut = [];
       if(_.isEmpty(stories)) {
-        algoliaHelper.populate().then(() => {
-          resolve(storiesOut);
-        }, err => {
-          reject(err);
-        });
+        algoliaHelper.populate();
+        resolve(storiesOut);
       }
       const storiesSorted = _.sortBy(stories, x => {
         return x.created_at_i;
