@@ -12,9 +12,9 @@ Autor: Octavio Cárdenas.
 * port: 27017
 * name: stories
 
-## Instalation.
+## Installation.
 
-* git clone git@github.com:ocardenasmartinez/reigndesign.git
+* git clone https://github.com/ocardenasmartinez/reigndesign.git
 * cd reigndesign
 * npm install
 
