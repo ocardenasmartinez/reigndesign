@@ -29,20 +29,23 @@ var getAll = () => {
     storiesClient.getByFilter({delete: false}).then(stories => {
       const storiesOut = [];
       if(_.isEmpty(stories)) {
-        algoliaHelper.populate();
-        resolve(storiesOut);
+        algoliaHelper.populate().then(response => {
+          resolve(storiesOut);
+        }, err => {
+          reject(error);
+        });
       }
-      const storiesSorted = _.sortBy(stories, x => {
-        return x.created_at_i;
+      const storiesSorted = _.sortBy(stories, story => {
+        return -story.created_at_i;
       });
-      storiesSorted.reverse().forEach(el => {
+      storiesSorted.forEach(story => {
         storiesOut.push({
-          story_title: (el.story_title != null ? el.story_title : el.title),
-          story_url: el.story_url,
-          created_at: setCreatedAt(el.created_at),
-          created_at_i: el.created_at_i,
-          story_id: el.story_id,
-          author: el.author
+          story_title: (story.story_title != null ? story.story_title : story.title),
+          story_url: story.story_url,
+          created_at: setCreatedAt(story.created_at),
+          created_at_i: story.created_at_i,
+          story_id: story.story_id,
+          author: story.author
         });
       });
       resolve(storiesOut);

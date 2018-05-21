@@ -1,5 +1,5 @@
 const config = {
-  algolia: {
+  	algolia: {
    		url: 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs'
 	},
 	db: {

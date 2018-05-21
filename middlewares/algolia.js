@@ -15,17 +15,17 @@ var getStories = () => {
       });
       resp.on('end', () => {
         var newStories = [];
-        JSON.parse(data).hits.forEach((el) => {
-          var story = new Story();
-          story.story_id = el.story_id;
-          story.story_title = el.story_title;
-          story.story_url = el.story_url;
-          story.created_at = el.created_at;
-          story.created_at_i = el.created_at_i;
-          story.author = el.author;
-          story.title = el.title;
-          story.delete = el.delete;
-          newStories.push(story);
+        JSON.parse(data).hits.forEach((story) => {
+          var storyOut = new Story();
+          storyOut.story_id = story.story_id;
+          storyOut.story_title = story.story_title;
+          storyOut.story_url = story.story_url;
+          storyOut.created_at = story.created_at;
+          storyOut.created_at_i = story.created_at_i;
+          storyOut.author = story.author;
+          storyOut.title = story.title;
+          storyOut.delete = story.delete;
+          newStories.push(storyOut);
         });
         resolve(newStories);
       });

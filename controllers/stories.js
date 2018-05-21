@@ -13,7 +13,7 @@ router.delete('/', (req, res) => {
 
 router.get('/', (req, res) => {
   storiesHelper.getAll().then(stories => {
-    res.render('stories', {stories: stories});
+    res.render('stories', {stories});
   }, err => {
     res.status(500).send('error');
   });

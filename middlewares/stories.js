@@ -1,10 +1,11 @@
 const dbConnection = require('./database/connection.js');
+const config = require('../config/config');
 const logger = require('winston');
 
-var getByFilter = (filter) => {
+var getByFilter = filter => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
-      databaseConnection.collection('stories', (error, collection) => {
+      databaseConnection.collection(config.db.name, (error, collection) => {
         logger.log('info', 'getting stories from database by filter', JSON.stringify(filter));
         collection.find(filter).toArray((err, results) => {
           if(err) {
@@ -18,10 +19,10 @@ var getByFilter = (filter) => {
   });
 };
 
-var save = data  => {
+var save = data => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
-      databaseConnection.collection('stories', (error, collection) => {
+      databaseConnection.collection(config.db.name, (error, collection) => {
         var story = {
           story_id: data.story_id,
           story_title: data.story_title,

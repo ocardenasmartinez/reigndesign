@@ -1,10 +1,10 @@
 # ReignDesign test.
-Autor: Octavio Cárdenas.
 
 ## Software requirements. 
 
 * Node last version.
 * MongoDB last version (free access).
+* No user, no password.
 
 ## Database configurations.
 
