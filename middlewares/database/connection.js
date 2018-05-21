@@ -30,22 +30,3 @@ function getProduction() {
     });
   });
 }
-
-/*
-function getTest() {
-  return new Promise((resolve, reject) => {
-    logger.log('info', 'conecting with the test database');
-    
-  }); 
-}
-
-if(process.env.NODE_ENV == 'prod') {
-      
-}else{
-  getTest().then(connection => {
-    callback(connection);
-  }, err => {
-    logger.log('error', 'database error', error);
-  });
-}
-*/
