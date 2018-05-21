@@ -20,5 +20,5 @@ Autor: Octavio Cárdenas.
 
 ## Run app.
 
-npm run start
-open localhost:3001
+* npm run start
+* open localhost:3001
