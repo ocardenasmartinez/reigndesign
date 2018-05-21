@@ -18,10 +18,6 @@ Autor: Octavio Cárdenas.
 * cd reigndesign
 * npm install
 
-## Tests.
-
-npm run test
-
 ## Run app.
 
 npm run start
