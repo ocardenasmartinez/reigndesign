@@ -21,4 +21,4 @@ Autor: Octavio Cárdenas.
 ## Run app.
 
 * npm run start
-* open localhost:3001
+* open browser and hit http://localhost:3001/nodejsnews
