@@ -17,7 +17,7 @@ var remove = id => {
       	created_at_i: created_at_i
     };
     storiesClient.update(filter, data).then(response => {
-      logger.log('info', 'success updating story');
+      logger.log('info', 'updating story success');
     }, err => {
       logger.log('error', 'error updating story');
     });

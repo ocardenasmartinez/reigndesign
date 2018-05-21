@@ -26,7 +26,6 @@ var populate = () => {
           story.title = el.title;
           story.delete = false;
           storiesClient.save(story);
-          logger.log('info', 'new story saved by job', JSON.stringify(story, 1, 1));
         });
       }, err => {
         logger.log('error', 'error getting stories');

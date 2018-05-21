@@ -29,12 +29,13 @@ module.exports = callback => {
   }
 };
 
-function getProduction(){
+function getProduction() {
   return new Promise((resolve, reject) => {
+    logger.log('info', 'conecting with the production database');
     var db = new Db(config.db.name, new Server(config.db.host, config.db.port, { auto_reconnect: true }));
     db.open((error, databaseConnection) => {
       if (error) {
-        logger.log('error', 'database error', error);
+        logger.log('error', 'production database error', error);
         reject(error);
       }
       resolve(databaseConnection);
@@ -42,13 +43,16 @@ function getProduction(){
   });
 }
 
-function getTest(){
-  var url = 'mongodb://localhost:27017/stories-test';
-  MongoClient.connect(url, {}, (error, databaseConnection) => {
-    if (error) {
-      logger.log('error', 'database error', error);
-      throw new Error(error);
-    }
-    return databaseConnection;
-  });
+function getTest() {
+  return new Promise((resolve, reject) => {
+    logger.log('info', 'conecting with the test database');
+    var url = 'mongodb://localhost:27017/stories';
+    MongoClient.connect(url, {}, (error, databaseConnection) => {
+      if (error) {
+        logger.log('error', 'test database error', error);
+        reject(error);
+      }
+      resolve(databaseConnection);
+    });
+  }); 
 }
