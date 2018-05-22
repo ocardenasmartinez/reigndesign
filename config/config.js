@@ -5,7 +5,8 @@ const config = {
 	db: {
 	   	host: 'localhost',
 	   	port: 27017,
-	   	name: 'stories'
+	   	name: 'stories',
+	   	url: 'mongodb://localhost:27017/stories'
  	}
 };
 

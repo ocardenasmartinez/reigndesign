@@ -1,7 +1,8 @@
-const Db = require('mongodb').Db;
-const Server = require('mongodb').Server;
+const mongodb = require('mongo-mock');
 const config = require('../../config/config');
 const logger = require('winston');
+const production = require('./production.js');
+const test = require('./test.js');
 var connectionInstance;
 
 module.exports = callback => {
@@ -9,24 +10,14 @@ module.exports = callback => {
     callback(connectionInstance);
     return;
   }else{
-    getProduction().then(connection => {
-      callback(connection);
-    }, err => {
-      logger.log('error', 'database error', error);
-    });
+    if(process.env.NODE_ENV == 'prod') {
+      production().then(connection => {
+        callback(connection);
+      }, err => {});
+    }else{
+      test().then(connection => {
+        callback(connection);
+      }, err => {});
+    }
   }
 };
-
-function getProduction() {
-  return new Promise((resolve, reject) => {
-    logger.log('info', 'conecting with the production database');
-    var db = new Db(config.db.name, new Server(config.db.host, config.db.port, { auto_reconnect: true }));
-    db.open((error, databaseConnection) => {
-      if (error) {
-        logger.log('error', 'production database error', error);
-        reject(error);
-      }
-      resolve(databaseConnection);
-    });
-  });
-}

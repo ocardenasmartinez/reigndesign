@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=prod nodemon app.js"
+    "start": "cross-env NODE_ENV=prod nodemon app.js",
+    "test": "cross-env NODE_ENV=test mocha spec/*.spec.js"
   },
   "keywords": [
     "node.js",
@@ -28,6 +29,7 @@
     "jasmine-node": "2.0.0",
     "lodash": "4.17.10",
     "moment": "2.22.1",
+    "mongo-mock": "3.1.0",
     "mongodb": "2.2.31",
     "mongodb-fixtures": "0.0.5",
     "mongodb-wrapper": "1.0.3",
@@ -37,6 +39,7 @@
     "npm": "6.0.1",
     "pug": "2.0.3",
     "request": "2.86.0",
+    "supertest": "3.1.0",
     "winston": "2.4.2"
   }
 }
