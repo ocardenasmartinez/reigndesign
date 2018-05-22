@@ -9,3 +9,15 @@ function deleteDocument(id) {
     xhttp.send();
   }
 }
+
+function openLink(link) {
+	if(link) {
+		this.document.location.href = link;	
+	}else{
+		alert("No link");
+	}
+}
+
+function threeSecond() {
+	setInterval(function(){ location.reload(true); }, 3000);
+}

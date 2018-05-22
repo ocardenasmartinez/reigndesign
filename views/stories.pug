@@ -14,7 +14,7 @@ html(lang="en")
           .row
             .col-md-8(style="float:left}")
               div.box-inline
-                a(href=`${val.story_url}`)
+                a(onclick=`openLink(${JSON.stringify(val.story_url)})`)
                   | #{val.story_title}&nbsp;
               div.box-inline
                 | - #{val.author}
@@ -25,4 +25,4 @@ html(lang="en")
       else
         | No records, wait 3 secons..
         script. 
-          setInterval(function(){ location.reload(true); }, 3000);
+          threeSecond();
