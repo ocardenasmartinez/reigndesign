@@ -26,9 +26,9 @@
     "cross-env": "5.1.5",
     "express": "4.16.3",
     "install": "0.11.0",
-    "jasmine-node": "2.0.0",
     "lodash": "4.17.10",
     "moment": "2.22.1",
+    "mongo-in-memory": "0.0.5",
     "mongo-mock": "3.1.0",
     "mongodb": "2.2.31",
     "mongodb-fixtures": "0.0.5",
@@ -41,5 +41,8 @@
     "request": "2.86.0",
     "supertest": "3.1.0",
     "winston": "2.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

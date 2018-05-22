@@ -5,15 +5,18 @@ const production = require('./production.js');
 const test = require('./test.js');
 var connectionInstance;
 
-module.exports = callback => {
+module.exports = async callback => {
   if (connectionInstance) {
     callback(connectionInstance);
     return;
   }else{
     if(process.env.NODE_ENV == 'prod') {
-      production().then(connection => {
+      //var prod = ;
+      //console.log(prod);
+      callback(await production())
+      /*production().then(connection => {
         callback(connection);
-      }, err => {});
+      }, err => {});*/
     }else{
       test().then(connection => {
         callback(connection);
