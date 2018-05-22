@@ -10,7 +10,7 @@ module.exports = callback => {
     return;
   }else{
     getProduction().then(connection => {
-      callback(connection);
+      callback(connectionInstance = connection);
     }, err => {
       logger.log('error', 'database error', error);
     });
