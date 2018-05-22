@@ -50,7 +50,7 @@ var save = data => {
 var update = (filter, data) => {
   return new Promise((resolve, reject) => {
     dbConnection(databaseConnection => {
-      databaseConnection.collection('stories', (error, collection) => {
+      databaseConnection.collection(config.db.name, (error, collection) => {
         collection.update(filter, data, (err, results) => {
           if(err) {
               logger.log('error', 'error updating stor in the databasey', err);

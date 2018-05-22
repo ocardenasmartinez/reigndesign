@@ -22,3 +22,4 @@
 
 * npm run start
 * open browser and hit http://localhost:3001/nodejsnews
+* the app automatically populate the database in the first request.
