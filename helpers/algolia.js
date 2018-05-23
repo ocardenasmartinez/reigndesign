@@ -26,10 +26,8 @@ module.exports = async () => {
       storyOut.title = story.title;
       storyOut.delete = false;
       storiesClient.save(storyOut).then(response => {
-
-      }, err => {
-
-      });
+        logger.log('info', 'story saved', storyOut);
+      }, err => {});
     });
   }catch(err) {
     logger.log('error', 'error getting stories');
