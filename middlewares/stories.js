@@ -2,66 +2,49 @@ const dbConnection = require('./database/connection.js');
 const config = require('../config/config');
 const logger = require('winston');
 
-var getByFilter = filter => {
-  return new Promise((resolve, reject) => {
-    dbConnection(databaseConnection => {
-      databaseConnection.collection(config.db.name, (error, collection) => {
-        logger.log('info', 'getting stories from database by filter', JSON.stringify(filter));
-        collection.find(filter).toArray((err, results) => {
-          if(err) {
-              logger.log('error', 'error getting stories from database', err);
-              reject(err);
-          }
-          resolve(results);
-        });
-      });
-    });
-  });
+var getByFilter = async filter => {
+  try {
+    const databaseConnection = await dbConnection();
+    const collection = await databaseConnection.collection(config.db.name);
+    logger.log('info', 'getting stories from database by filter', JSON.stringify(filter));
+    return await collection.find(filter).toArray();
+  }catch(err) {
+    logger.log('error', 'error getting stories from database', err);
+    throw err;
+  }
 };
 
-var save = data => {
-  return new Promise((resolve, reject) => {
-    dbConnection(databaseConnection => {
-      databaseConnection.collection(config.db.name, (error, collection) => {
-        var story = {
-          story_id: data.story_id,
-          story_title: data.story_title,
-          story_url: data.story_url,
-          created_at: data.created_at,
-          story_id: data.story_id,
-          created_at_i: data.created_at_i,
-          author: data.author,
-          title: data.title,
-          delete: data.delete
-        };
-        collection.save(story, (err, results) => {
-          if(err) {
-              logger.log('error', 'error saving story in the database', err);
-              reject(err);
-          }
-          logger.log('info', 'story saved in the database', data);
-          resolve(results);
-        });
-      });
-    });
-  });
+var save = async data => {
+  try {
+    const databaseConnection = await dbConnection();
+    const collection = await databaseConnection.collection(config.db.name);
+    var story = {
+      story_id: data.story_id,
+      story_title: data.story_title,
+      story_url: data.story_url,
+      created_at: data.created_at,
+      story_id: data.story_id,
+      created_at_i: data.created_at_i,
+      author: data.author,
+      title: data.title,
+      delete: data.delete
+    };
+    return await collection.save(story);
+  }catch(err) {
+    logger.log('error', 'error saving story in the database', err);
+    throw err;
+  }
 }
 
-var update = (filter, data) => {
-  return new Promise((resolve, reject) => {
-    dbConnection(databaseConnection => {
-      databaseConnection.collection(config.db.name, (error, collection) => {
-        collection.update(filter, data, (err, results) => {
-          if(err) {
-              logger.log('error', 'error updating stor in the databasey', err);
-              reject(err);
-          }
-          logger.log('info', 'story updated in the database', filter);
-          resolve(results);
-        });
-      });
-    });
-  });
+var update = async (filter, data) => {
+  try {
+    const databaseConnection = await dbConnection();
+    const collection = await databaseConnection.collection(config.db.name);
+    return await collection.update(filter, data);
+  }catch(err) {
+    logger.log('error', 'error updating stor in the databasey', err);
+    throw err;
+  }  
 }
 
 module.exports = {

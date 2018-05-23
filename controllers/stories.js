@@ -3,20 +3,23 @@ const mongo = require('mongodb-wrapper')
 const router = express.Router();
 const storiesHelper = require('../helpers/stories');
 
-router.delete('/', (req, res) => {
-  storiesHelper.remove(req.query.created_at_i).then(response => {
+router.delete('/', async (req, res) => {
+  try {
+    await storiesHelper.remove(req.query.created_at_i);
     res.status(200).send('ok');
-  }, err => {
+  }catch(err) {
     res.status(500).send('error');
-  })
+  }
 });
 
-router.get('/', (req, res) => {
-  storiesHelper.getAll().then(stories => {
+router.get('/', async (req, res) => {
+  try {
+    const stories = await storiesHelper.getAll();
     res.render('stories', {stories});
-  }, err => {
+  }catch(err) {
+    console.log(err);
     res.status(500).send('error');
-  });
+  }
 });
 
 module.exports = router
