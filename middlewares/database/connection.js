@@ -15,7 +15,7 @@ module.exports = async () => {
 async function getProduction() {
   try {
     const server = new Server(config.db.host, config.db.port, { auto_reconnect: true });
-    var db = new Db(config.db.name, server);
+    let db = new Db(config.db.name, server);
     return await db.open();
   }catch(err) {
     logger.log('error', 'production database error', err);
