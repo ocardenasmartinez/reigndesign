@@ -6,7 +6,7 @@ const algoliaClient = require('../middlewares/algolia');
 const algoliaHelper = require('../helpers/algolia');
 const format = 'MM/DD/YYYY';
 
-var remove = async id => {
+let remove = async id => {
   try {
     const created_at_i = Number(id);
     const filter = {
@@ -22,7 +22,7 @@ var remove = async id => {
   }
 }
 
-var getAll = async () => {
+let getAll = async () => {
   try {
     const stories = await storiesClient.getByFilter({delete: false});
     const storiesOut = [];
@@ -53,7 +53,7 @@ function setCreatedAt(data) {
   const dateIn = moment(data).format(format).toString();
   const today = moment().format(format).toString();
   const yesterday = moment(data).subtract(0, 'days').format(format).toString();
-  var dateOut
+  let dateOut
   if(today == dateIn) {
     dateOut = moment.utc(data).format("HH:mm");
   }else if(yesterday == dateIn) {

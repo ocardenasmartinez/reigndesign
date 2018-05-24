@@ -16,7 +16,7 @@ module.exports = async () => {
     });
     const realNewStories = _.filter(newStories, stories => !_.includes(currentStoriesIds, stories.created_at_i));
     realNewStories.forEach(story => {
-      var storyOut = new Story();
+      let storyOut = new Story();
       storyOut.story_id = story.story_id;
       storyOut.story_title = story.story_title;
       storyOut.story_url = story.story_url;

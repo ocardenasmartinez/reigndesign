@@ -2,7 +2,7 @@ const dbConnection = require('./database/connection.js');
 const config = require('../config/config');
 const logger = require('winston');
 
-var getByFilter = async filter => {
+let getByFilter = async filter => {
   try {
     const databaseConnection = await dbConnection();
     const collection = await databaseConnection.collection(config.db.name);
@@ -14,11 +14,11 @@ var getByFilter = async filter => {
   }
 };
 
-var save = async data => {
+let save = async data => {
   try {
     const databaseConnection = await dbConnection();
     const collection = await databaseConnection.collection(config.db.name);
-    var story = {
+    let story = {
       story_id: data.story_id,
       story_title: data.story_title,
       story_url: data.story_url,
@@ -36,7 +36,7 @@ var save = async data => {
   }
 }
 
-var update = async (filter, data) => {
+let update = async (filter, data) => {
   try {
     const databaseConnection = await dbConnection();
     const collection = await databaseConnection.collection(config.db.name);

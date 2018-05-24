@@ -2,7 +2,7 @@ const Db = require('mongodb').Db;
 const Server = require('mongodb').Server;
 const config = require('../../config/config');
 const logger = require('winston');
-var connectionInstance;
+let connectionInstance;
 
 module.exports = async () => {
   if (connectionInstance) {
@@ -18,7 +18,7 @@ async function getProduction() {
     var db = new Db(config.db.name, server);
     return await db.open();
   }catch(err) {
-    logger.log('error', 'production database error', error);
+    logger.log('error', 'production database error', err);
     throw err;
   } 
 }

@@ -10,9 +10,9 @@ module.exports = async () => {
     logger.log('info', 'getting stories from algolia');
     const response = await axios.get(config.algolia.url);
     const hits = response.data.hits;
-    var newStories = []
+    let newStories = []
     hits.forEach(story => {
-      var storyOut = new Story();
+      let storyOut = new Story();
       storyOut.story_id = story.story_id;
       storyOut.story_title = story.story_title;
       storyOut.story_url = story.story_url;
